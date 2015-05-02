@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
+</head>
+<body>
+<script>
+var url="http://www.corkcellar.com/feed/";
+function parseRSS(url,callback) {
+  $.ajax({
+    url: document.location.protocol + '//ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=10&callback=?&q=' + encodeURIComponent(url),
+    dataType: 'json',
+    success: function(data) {
+      //callback(data.responseData.feed);
+	  //alert(data.responseData.feed);
+      //alert(JSON.stringify(data.responseData.feed));	
+	  $.each(data.responseData.feed.entries, function(index, val) {
+			$( "#content" ).append( "<p style='margin:50px 20px 20px 20px;'>" );
+			$( "#content" ).append( "<h3>"+val.title+"</h3>" );
+			$( "#content" ).append( "<div style='color:green'>"+val.author+"</div>" );
+			$( "#content" ).append( "<div  style='color:blue'>"+val.publishedDate+"</div>" );
+			$( "#content" ).append( "<div  style='color:brown'>"+val.link+"</div>" );
+			//$( "#content" ).append( "<div>"+val.content+"</div>" );
+			$( "#content" ).append( "</p>" );
+		});
+    }
+  });
+}
+parseRSS(url);
+
+</script>
+<div id="content" style="background-color:#9FF; padding:20px 20px 20px 20px;">
+
+</div>
+</body>
+</html>
