@@ -1,7 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<access origin="http://corkcellar.com" />
+<access origin="*"/>
 
-<access origin="http://corkcellar.com" subdomains="true" />
-
-<access origin=".*"/>
